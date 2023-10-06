@@ -1,0 +1,97 @@
+<html>
+<head>
+    <title>Life Insurance Needs Assessment</title>
+    <style>
+        /* Background Image */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 100%;
+            z-index: -1;
+            background: url('/static/ai_pic.jpg') no-repeat center center fixed;
+            background-size: cover;
+            opacity: 0.15; /* Slight transparency */
+        }
+        /* Center everything in the body */
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+        /* Set fixed sizes for input and textarea */
+        input[type="text"] {
+            width: 600px;
+            height: 30px;
+        }
+
+        textarea {
+            width: 600px;
+            height: 300px;
+        }
+        /* Style for the title */
+        h1 {
+            color: royalblue;
+            font-size: 48px;
+            margin-bottom: 50px;
+        }
+        /* Style for the submit button */
+        input[type="submit"] {
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+        /* Style for GPT Response label */
+        label[for="gpt_response"] {
+            text-align: left;
+            width: 600px;
+        }
+        /* Hidden by default */
+        #conversation_history {
+            display: none;
+            width: 600px;
+            height: 300px;
+        }
+        /* Style for buttons beside each other */
+        .button-container {
+            display: flex;
+            gap: 2em; /* Tab spacing */
+        }
+    </style>
+    <script>
+        function toggleHistory() {
+            var x = document.getElementById("conversation_history");
+            if (x.style.display === "none") {
+                x.style.display = "block";
+            } else {
+                x.style.display = "none";
+            }
+        }
+    </script>
+</head>
+<body>
+    <h1>Life Insurance Needs Assessment</h1>
+    <form action="/" method="post">
+        <label for="user_message">Your Message:</label><br>
+        <input type="text" id="user_message" name="user_message"><br>
+        <hr style="width: 1px; height: 1px; ">  <!-- Horizontal line -->
+        <div style="text-align: center;">
+            <input type="submit" value="ASK ChatGPT">
+        </div>
+    </form>
+    <br>
+    <div style="width: 600px;">
+        <label for="gpt_response">GPT Response:</label><br>
+        <textarea id="gpt_response" readonly>{{ gpt_response }}</textarea>
+    </div>
+    <div class="button-container">
+        <button onclick="toggleHistory()">Chat History</button>
+        <button>Recommendation</button>
+    </div>
+    <textarea id="conversation_history" readonly>{{ conversation_history }}</textarea>
+</body>
+</html>
